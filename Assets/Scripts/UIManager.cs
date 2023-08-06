@@ -1,13 +1,8 @@
 ﻿using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private Image[] slotImages; // The first three images are in the middle, the other images are top and bottom
-    [SerializeField] private GameData gameData;
     [SerializeField] private LevelData levelData;
     [SerializeField] private SlotManager slotManager;
     
@@ -30,19 +25,6 @@ public class UIManager : MonoBehaviour
     public void OnClickSpinButton()
     {
         slotManager.StartSpin();
-    }
-    
-    public void ChangeSprites(SlotElementType[] sprites)
-    {
-        for (var i = 0; i < 3; i++)
-        {
-            slotImages[i].sprite = gameData.GetSprite(sprites[i]);
-        }
-        
-        for (var i = 3; i < slotImages.Length; i++)
-        {
-            slotImages[i].sprite = gameData.GetRandomSprite();
-        }
     }
     
     // Getter and Setter

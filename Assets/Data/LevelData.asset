@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e3fc28c0c6a4e82bae5346eb23456b7, type: 3}
   m_Name: LevelData
   m_EditorClassIdentifier: 
-  spinCounter: 0
-  gold: 0
+  spinCounter: 1
+  gold: 500
   maxEnergy: 1000
-  currentEnergy: 1000
+  currentEnergy: 997
   slotElementGroupsDictionary:
     pairs:
     - key: 0

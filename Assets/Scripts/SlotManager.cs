@@ -6,7 +6,9 @@ public class SlotManager : MonoBehaviour
     [SerializeField] private LevelData levelData;
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private UIManager uiManager;
-    private bool isSpining = false;
+    [SerializeField] private AnimationManager animationManager;
+    
+    private bool _isSpinning;
     
     public event Action OnStartSpin;
     public event Action OnEndSpin;
@@ -15,16 +17,29 @@ public class SlotManager : MonoBehaviour
     {
         InitializeSlot();
     }
-    
+
+    private void OnDestroy()
+    {
+        DeinitializeSlot();
+    }
+
     private void InitializeSlot()
     {
+        animationManager.OnEndAllSlotAnimations -= OnEndAllSlotAnimations;
+        animationManager.OnEndAllSlotAnimations += OnEndAllSlotAnimations;
+        
         if (levelData.GetSlotElementGroupsDictionary().Count == 0)
             levelManager.CreateLevel();
+    }
+    
+    private void DeinitializeSlot()
+    {
+        animationManager.OnEndAllSlotAnimations -= OnEndAllSlotAnimations;
     }
 
     public void StartSpin()
     {
-        if (isSpining)
+        if (_isSpinning)
             return;
         
         var slotElementGroup = levelData.GetSlotElementGroup();
@@ -35,18 +50,17 @@ public class SlotManager : MonoBehaviour
             return;
         }
         
-        isSpining = true;
+        _isSpinning = true;
         levelData.IncreaseSpinCounter();
-        // levelData.DecreaseEnergy();
+        levelData.DecreaseEnergy();
         uiManager.SetCurrentEnergyText(levelData.GetCurrentEnergy().ToString());
-        uiManager.ChangeSprites(slotElementGroup.tripleGroup);
+        animationManager.SetBingoElements(slotElementGroup.tripleGroup[0], slotElementGroup.tripleGroup[1], slotElementGroup.tripleGroup[2]);
         OnStartSpin?.Invoke();
-        EndSpin();
     }
-    
-    public void EndSpin()
+
+    private void EndSpin()
     {
-        isSpining = false;
+        _isSpinning = false;
         var slotElementGroup = levelData.GetSlotElementGroup();
         if (slotElementGroup == default)
         {
@@ -56,5 +70,10 @@ public class SlotManager : MonoBehaviour
         levelData.IncreaseGold(slotElementGroup.goldValue);
         uiManager.SetGoldText(levelData.GetGold().ToString());
         OnEndSpin?.Invoke();
+    }
+
+    private void OnEndAllSlotAnimations()
+    {
+        EndSpin();
     }
 }
