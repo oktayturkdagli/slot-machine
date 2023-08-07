@@ -9,7 +9,7 @@ public class AnimationManager : MonoBehaviour
     [SerializeField] private TimerManager timerManager;
     
     // Gold Animation
-    [SerializeField] private Animation goldAnimation;
+    [SerializeField] private ParticleSystem goldEffect;
     
     // Slot Animation
     [SerializeField] private Transform[] checkPoints; // Start Point, Bingo Point, End Point
@@ -59,9 +59,9 @@ public class AnimationManager : MonoBehaviour
     }
     
     // Gold Animations
-    private void PlayGoldAnimation()
+    public void PlayGoldEffect()
     {
-        Debug.Log("Gold Animation Played");
+        goldEffect.Play();
     }
     
     // Slot Animations
@@ -187,6 +187,7 @@ public class AnimationManager : MonoBehaviour
     {
         if (_slot1AnimationObject.IsAnimationFinished && _slot2AnimationObject.IsAnimationFinished && _slot3AnimationObject.IsAnimationFinished)
         {
+            DOTween.KillAll(false);
             OnEndAllSlotAnimations?.Invoke();
         }
     }

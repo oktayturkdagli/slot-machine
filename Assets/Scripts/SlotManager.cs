@@ -74,6 +74,11 @@ public class SlotManager : MonoBehaviour
 
     private void OnEndAllSlotAnimations()
     {
+        var slotElementGroup = levelData.GetSlotElementGroup();
+        if (slotElementGroup.goldValue > 0)
+        {
+            animationManager.PlayGoldEffect();
+        }
         EndSpin();
     }
 }
