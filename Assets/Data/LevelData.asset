@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e3fc28c0c6a4e82bae5346eb23456b7, type: 3}
   m_Name: LevelData
   m_EditorClassIdentifier: 
-  spinCounter: 1
-  gold: 500
+  spinCounter: 26
+  gold: 10600
   maxEnergy: 1000
-  currentEnergy: 997
+  currentEnergy: 945
   slotElementGroupsDictionary:
     pairs:
     - key: 0
@@ -26,46 +26,46 @@ MonoBehaviour:
         tripleGroup: 040000000100000003000000
     - key: 1
       value:
-        name: A-Wild-Bonus
-        possibility: 13
-        goldValue: 0
-        tripleGroup: 040000000100000003000000
+        name: A-A-A
+        possibility: 9
+        goldValue: 100
+        tripleGroup: 040000000400000004000000
     - key: 2
       value:
-        name: A-Wild-Bonus
+        name: Wild-Bonus-A
         possibility: 13
         goldValue: 0
-        tripleGroup: 040000000100000003000000
+        tripleGroup: 010000000300000004000000
     - key: 3
       value:
-        name: A-Wild-Bonus
-        possibility: 13
-        goldValue: 0
-        tripleGroup: 040000000100000003000000
+        name: Seven-Seven-Seven
+        possibility: 7
+        goldValue: 300
+        tripleGroup: 020000000200000002000000
     - key: 4
       value:
-        name: A-Wild-Bonus
-        possibility: 13
-        goldValue: 0
-        tripleGroup: 040000000100000003000000
+        name: Bonus-Bonus-Bonus
+        possibility: 8
+        goldValue: 200
+        tripleGroup: 030000000300000003000000
     - key: 5
       value:
-        name: A-Wild-Bonus
+        name: Wild-Wild-Seven
         possibility: 13
         goldValue: 0
-        tripleGroup: 040000000100000003000000
+        tripleGroup: 010000000100000002000000
     - key: 6
       value:
-        name: A-Wild-Bonus
+        name: Bonus-A-Jackpot
         possibility: 13
         goldValue: 0
-        tripleGroup: 040000000100000003000000
+        tripleGroup: 030000000400000000000000
     - key: 7
       value:
-        name: A-Wild-Bonus
+        name: Jackpot-Jackpot-A
         possibility: 13
         goldValue: 0
-        tripleGroup: 040000000100000003000000
+        tripleGroup: 000000000000000004000000
     - key: 8
       value:
         name: A-Wild-Bonus
@@ -74,28 +74,28 @@ MonoBehaviour:
         tripleGroup: 040000000100000003000000
     - key: 9
       value:
-        name: A-Wild-Bonus
+        name: Wild-Bonus-A
         possibility: 13
         goldValue: 0
-        tripleGroup: 040000000100000003000000
+        tripleGroup: 010000000300000004000000
     - key: 10
       value:
-        name: A-Wild-Bonus
+        name: Jackpot-Jackpot-A
         possibility: 13
         goldValue: 0
-        tripleGroup: 040000000100000003000000
+        tripleGroup: 000000000000000004000000
     - key: 11
       value:
-        name: A-Wild-Bonus
-        possibility: 13
-        goldValue: 0
-        tripleGroup: 040000000100000003000000
+        name: A-A-A
+        possibility: 9
+        goldValue: 100
+        tripleGroup: 040000000400000004000000
     - key: 12
       value:
-        name: A-Wild-Bonus
-        possibility: 13
-        goldValue: 0
-        tripleGroup: 040000000100000003000000
+        name: A-A-A
+        possibility: 9
+        goldValue: 100
+        tripleGroup: 040000000400000004000000
     - key: 13
       value:
         name: Wild-Wild-Seven
@@ -104,28 +104,28 @@ MonoBehaviour:
         tripleGroup: 010000000100000002000000
     - key: 14
       value:
-        name: Wild-Wild-Seven
+        name: Bonus-A-Jackpot
         possibility: 13
         goldValue: 0
-        tripleGroup: 010000000100000002000000
+        tripleGroup: 030000000400000000000000
     - key: 15
       value:
-        name: Wild-Wild-Seven
-        possibility: 13
-        goldValue: 0
-        tripleGroup: 010000000100000002000000
+        name: Jackpot-Jackpot-Jackpot
+        possibility: 5
+        goldValue: 500
+        tripleGroup: 000000000000000000000000
     - key: 16
       value:
-        name: Wild-Wild-Seven
-        possibility: 13
-        goldValue: 0
-        tripleGroup: 010000000100000002000000
+        name: Wild-Wild-Wild
+        possibility: 6
+        goldValue: 400
+        tripleGroup: 010000000100000001000000
     - key: 17
       value:
-        name: Wild-Wild-Seven
-        possibility: 13
-        goldValue: 0
-        tripleGroup: 010000000100000002000000
+        name: Wild-Wild-Wild
+        possibility: 6
+        goldValue: 400
+        tripleGroup: 010000000100000001000000
     - key: 18
       value:
         name: Wild-Wild-Seven
@@ -134,40 +134,40 @@ MonoBehaviour:
         tripleGroup: 010000000100000002000000
     - key: 19
       value:
-        name: Wild-Wild-Seven
+        name: Jackpot-Jackpot-A
         possibility: 13
         goldValue: 0
-        tripleGroup: 010000000100000002000000
+        tripleGroup: 000000000000000004000000
     - key: 20
       value:
-        name: Wild-Wild-Seven
+        name: Bonus-A-Jackpot
         possibility: 13
         goldValue: 0
-        tripleGroup: 010000000100000002000000
+        tripleGroup: 030000000400000000000000
     - key: 21
       value:
-        name: Wild-Wild-Seven
+        name: Wild-Bonus-A
         possibility: 13
         goldValue: 0
-        tripleGroup: 010000000100000002000000
+        tripleGroup: 010000000300000004000000
     - key: 22
       value:
-        name: Wild-Wild-Seven
+        name: A-Wild-Bonus
         possibility: 13
         goldValue: 0
-        tripleGroup: 010000000100000002000000
+        tripleGroup: 040000000100000003000000
     - key: 23
       value:
-        name: Wild-Wild-Seven
-        possibility: 13
-        goldValue: 0
-        tripleGroup: 010000000100000002000000
+        name: Bonus-Bonus-Bonus
+        possibility: 8
+        goldValue: 200
+        tripleGroup: 030000000300000003000000
     - key: 24
       value:
-        name: Wild-Wild-Seven
-        possibility: 13
-        goldValue: 0
-        tripleGroup: 010000000100000002000000
+        name: Seven-Seven-Seven
+        possibility: 7
+        goldValue: 300
+        tripleGroup: 020000000200000002000000
     - key: 25
       value:
         name: Wild-Wild-Seven
@@ -182,112 +182,112 @@ MonoBehaviour:
         tripleGroup: 000000000000000004000000
     - key: 27
       value:
-        name: Jackpot-Jackpot-A
+        name: Wild-Bonus-A
         possibility: 13
         goldValue: 0
-        tripleGroup: 000000000000000004000000
+        tripleGroup: 010000000300000004000000
     - key: 28
       value:
-        name: Jackpot-Jackpot-A
+        name: Bonus-A-Jackpot
         possibility: 13
         goldValue: 0
-        tripleGroup: 000000000000000004000000
+        tripleGroup: 030000000400000000000000
     - key: 29
       value:
-        name: Jackpot-Jackpot-A
-        possibility: 13
-        goldValue: 0
-        tripleGroup: 000000000000000004000000
+        name: Bonus-Bonus-Bonus
+        possibility: 8
+        goldValue: 200
+        tripleGroup: 030000000300000003000000
     - key: 30
       value:
-        name: Jackpot-Jackpot-A
-        possibility: 13
-        goldValue: 0
-        tripleGroup: 000000000000000004000000
+        name: A-A-A
+        possibility: 9
+        goldValue: 100
+        tripleGroup: 040000000400000004000000
     - key: 31
       value:
-        name: Jackpot-Jackpot-A
+        name: A-Wild-Bonus
         possibility: 13
         goldValue: 0
-        tripleGroup: 000000000000000004000000
+        tripleGroup: 040000000100000003000000
     - key: 32
       value:
-        name: Jackpot-Jackpot-A
+        name: Bonus-A-Jackpot
         possibility: 13
         goldValue: 0
-        tripleGroup: 000000000000000004000000
+        tripleGroup: 030000000400000000000000
     - key: 33
       value:
-        name: Jackpot-Jackpot-A
+        name: Bonus-A-Jackpot
         possibility: 13
         goldValue: 0
-        tripleGroup: 000000000000000004000000
+        tripleGroup: 030000000400000000000000
     - key: 34
       value:
-        name: Jackpot-Jackpot-A
+        name: Wild-Wild-Seven
         possibility: 13
         goldValue: 0
-        tripleGroup: 000000000000000004000000
+        tripleGroup: 010000000100000002000000
     - key: 35
       value:
-        name: Jackpot-Jackpot-A
-        possibility: 13
-        goldValue: 0
-        tripleGroup: 000000000000000004000000
+        name: Jackpot-Jackpot-Jackpot
+        possibility: 5
+        goldValue: 500
+        tripleGroup: 000000000000000000000000
     - key: 36
       value:
-        name: Jackpot-Jackpot-A
+        name: Wild-Bonus-A
         possibility: 13
         goldValue: 0
-        tripleGroup: 000000000000000004000000
+        tripleGroup: 010000000300000004000000
     - key: 37
       value:
-        name: Jackpot-Jackpot-A
-        possibility: 13
-        goldValue: 0
-        tripleGroup: 000000000000000004000000
+        name: A-A-A
+        possibility: 9
+        goldValue: 100
+        tripleGroup: 040000000400000004000000
     - key: 38
       value:
+        name: A-Wild-Bonus
+        possibility: 13
+        goldValue: 0
+        tripleGroup: 040000000100000003000000
+    - key: 39
+      value:
         name: Jackpot-Jackpot-A
         possibility: 13
         goldValue: 0
         tripleGroup: 000000000000000004000000
-    - key: 39
-      value:
-        name: Wild-Bonus-A
-        possibility: 13
-        goldValue: 0
-        tripleGroup: 010000000300000004000000
     - key: 40
       value:
-        name: Wild-Bonus-A
-        possibility: 13
-        goldValue: 0
-        tripleGroup: 010000000300000004000000
+        name: Seven-Seven-Seven
+        possibility: 7
+        goldValue: 300
+        tripleGroup: 020000000200000002000000
     - key: 41
       value:
-        name: Wild-Bonus-A
+        name: Jackpot-Jackpot-A
         possibility: 13
         goldValue: 0
-        tripleGroup: 010000000300000004000000
+        tripleGroup: 000000000000000004000000
     - key: 42
       value:
-        name: Wild-Bonus-A
+        name: Wild-Wild-Seven
         possibility: 13
         goldValue: 0
-        tripleGroup: 010000000300000004000000
+        tripleGroup: 010000000100000002000000
     - key: 43
       value:
-        name: Wild-Bonus-A
+        name: A-Wild-Bonus
         possibility: 13
         goldValue: 0
-        tripleGroup: 010000000300000004000000
+        tripleGroup: 040000000100000003000000
     - key: 44
       value:
-        name: Wild-Bonus-A
-        possibility: 13
-        goldValue: 0
-        tripleGroup: 010000000300000004000000
+        name: Jackpot-Jackpot-Jackpot
+        possibility: 5
+        goldValue: 500
+        tripleGroup: 000000000000000000000000
     - key: 45
       value:
         name: Wild-Bonus-A
@@ -296,28 +296,28 @@ MonoBehaviour:
         tripleGroup: 010000000300000004000000
     - key: 46
       value:
-        name: Wild-Bonus-A
-        possibility: 13
-        goldValue: 0
-        tripleGroup: 010000000300000004000000
+        name: Wild-Wild-Wild
+        possibility: 6
+        goldValue: 400
+        tripleGroup: 010000000100000001000000
     - key: 47
       value:
-        name: Wild-Bonus-A
+        name: Bonus-A-Jackpot
         possibility: 13
         goldValue: 0
-        tripleGroup: 010000000300000004000000
+        tripleGroup: 030000000400000000000000
     - key: 48
       value:
-        name: Wild-Bonus-A
+        name: Wild-Wild-Seven
         possibility: 13
         goldValue: 0
-        tripleGroup: 010000000300000004000000
+        tripleGroup: 010000000100000002000000
     - key: 49
       value:
-        name: Wild-Bonus-A
-        possibility: 13
-        goldValue: 0
-        tripleGroup: 010000000300000004000000
+        name: Bonus-Bonus-Bonus
+        possibility: 8
+        goldValue: 200
+        tripleGroup: 030000000300000003000000
     - key: 50
       value:
         name: Wild-Bonus-A
@@ -326,10 +326,10 @@ MonoBehaviour:
         tripleGroup: 010000000300000004000000
     - key: 51
       value:
-        name: Wild-Bonus-A
-        possibility: 13
-        goldValue: 0
-        tripleGroup: 010000000300000004000000
+        name: A-A-A
+        possibility: 9
+        goldValue: 100
+        tripleGroup: 040000000400000004000000
     - key: 52
       value:
         name: Bonus-A-Jackpot
@@ -338,58 +338,58 @@ MonoBehaviour:
         tripleGroup: 030000000400000000000000
     - key: 53
       value:
-        name: Bonus-A-Jackpot
+        name: A-Wild-Bonus
         possibility: 13
         goldValue: 0
-        tripleGroup: 030000000400000000000000
+        tripleGroup: 040000000100000003000000
     - key: 54
       value:
-        name: Bonus-A-Jackpot
+        name: Jackpot-Jackpot-A
         possibility: 13
         goldValue: 0
-        tripleGroup: 030000000400000000000000
+        tripleGroup: 000000000000000004000000
     - key: 55
       value:
-        name: Bonus-A-Jackpot
-        possibility: 13
-        goldValue: 0
-        tripleGroup: 030000000400000000000000
+        name: Seven-Seven-Seven
+        possibility: 7
+        goldValue: 300
+        tripleGroup: 020000000200000002000000
     - key: 56
       value:
-        name: Bonus-A-Jackpot
-        possibility: 13
-        goldValue: 0
-        tripleGroup: 030000000400000000000000
+        name: Wild-Wild-Wild
+        possibility: 6
+        goldValue: 400
+        tripleGroup: 010000000100000001000000
     - key: 57
       value:
-        name: Bonus-A-Jackpot
+        name: Wild-Wild-Seven
         possibility: 13
         goldValue: 0
-        tripleGroup: 030000000400000000000000
+        tripleGroup: 010000000100000002000000
     - key: 58
       value:
-        name: Bonus-A-Jackpot
+        name: Wild-Bonus-A
         possibility: 13
         goldValue: 0
-        tripleGroup: 030000000400000000000000
+        tripleGroup: 010000000300000004000000
     - key: 59
       value:
-        name: Bonus-A-Jackpot
+        name: Jackpot-Jackpot-A
         possibility: 13
         goldValue: 0
-        tripleGroup: 030000000400000000000000
+        tripleGroup: 000000000000000004000000
     - key: 60
       value:
-        name: Bonus-A-Jackpot
-        possibility: 13
-        goldValue: 0
-        tripleGroup: 030000000400000000000000
+        name: A-A-A
+        possibility: 9
+        goldValue: 100
+        tripleGroup: 040000000400000004000000
     - key: 61
       value:
-        name: Bonus-A-Jackpot
-        possibility: 13
-        goldValue: 0
-        tripleGroup: 030000000400000000000000
+        name: Bonus-Bonus-Bonus
+        possibility: 8
+        goldValue: 200
+        tripleGroup: 030000000300000003000000
     - key: 62
       value:
         name: Bonus-A-Jackpot
@@ -398,94 +398,94 @@ MonoBehaviour:
         tripleGroup: 030000000400000000000000
     - key: 63
       value:
-        name: Bonus-A-Jackpot
+        name: A-Wild-Bonus
         possibility: 13
         goldValue: 0
-        tripleGroup: 030000000400000000000000
+        tripleGroup: 040000000100000003000000
     - key: 64
       value:
+        name: Wild-Bonus-A
+        possibility: 13
+        goldValue: 0
+        tripleGroup: 010000000300000004000000
+    - key: 65
+      value:
+        name: Jackpot-Jackpot-A
+        possibility: 13
+        goldValue: 0
+        tripleGroup: 000000000000000004000000
+    - key: 66
+      value:
+        name: Seven-Seven-Seven
+        possibility: 7
+        goldValue: 300
+        tripleGroup: 020000000200000002000000
+    - key: 67
+      value:
+        name: Bonus-Bonus-Bonus
+        possibility: 8
+        goldValue: 200
+        tripleGroup: 030000000300000003000000
+    - key: 68
+      value:
+        name: Wild-Wild-Wild
+        possibility: 6
+        goldValue: 400
+        tripleGroup: 010000000100000001000000
+    - key: 69
+      value:
+        name: A-Wild-Bonus
+        possibility: 13
+        goldValue: 0
+        tripleGroup: 040000000100000003000000
+    - key: 70
+      value:
+        name: Wild-Wild-Seven
+        possibility: 13
+        goldValue: 0
+        tripleGroup: 010000000100000002000000
+    - key: 71
+      value:
         name: Bonus-A-Jackpot
         possibility: 13
         goldValue: 0
         tripleGroup: 030000000400000000000000
-    - key: 65
-      value:
-        name: A-A-A
-        possibility: 9
-        goldValue: 100
-        tripleGroup: 040000000400000004000000
-    - key: 66
-      value:
-        name: A-A-A
-        possibility: 9
-        goldValue: 100
-        tripleGroup: 040000000400000004000000
-    - key: 67
-      value:
-        name: A-A-A
-        possibility: 9
-        goldValue: 100
-        tripleGroup: 040000000400000004000000
-    - key: 68
-      value:
-        name: A-A-A
-        possibility: 9
-        goldValue: 100
-        tripleGroup: 040000000400000004000000
-    - key: 69
-      value:
-        name: A-A-A
-        possibility: 9
-        goldValue: 100
-        tripleGroup: 040000000400000004000000
-    - key: 70
-      value:
-        name: A-A-A
-        possibility: 9
-        goldValue: 100
-        tripleGroup: 040000000400000004000000
-    - key: 71
-      value:
-        name: A-A-A
-        possibility: 9
-        goldValue: 100
-        tripleGroup: 040000000400000004000000
     - key: 72
       value:
-        name: A-A-A
-        possibility: 9
-        goldValue: 100
-        tripleGroup: 040000000400000004000000
+        name: Wild-Bonus-A
+        possibility: 13
+        goldValue: 0
+        tripleGroup: 010000000300000004000000
     - key: 73
       value:
-        name: A-A-A
-        possibility: 9
-        goldValue: 100
-        tripleGroup: 040000000400000004000000
+        name: Jackpot-Jackpot-A
+        possibility: 13
+        goldValue: 0
+        tripleGroup: 000000000000000004000000
     - key: 74
       value:
-        name: Bonus-Bonus-Bonus
-        possibility: 8
-        goldValue: 200
-        tripleGroup: 030000000300000003000000
+        name: A-Wild-Bonus
+        possibility: 13
+        goldValue: 0
+        tripleGroup: 040000000100000003000000
     - key: 75
       value:
-        name: Bonus-Bonus-Bonus
-        possibility: 8
-        goldValue: 200
-        tripleGroup: 030000000300000003000000
+        name: Wild-Wild-Seven
+        possibility: 13
+        goldValue: 0
+        tripleGroup: 010000000100000002000000
     - key: 76
       value:
-        name: Bonus-Bonus-Bonus
-        possibility: 8
-        goldValue: 200
-        tripleGroup: 030000000300000003000000
+        name: Jackpot-Jackpot-Jackpot
+        possibility: 5
+        goldValue: 500
+        tripleGroup: 000000000000000000000000
     - key: 77
       value:
-        name: Bonus-Bonus-Bonus
-        possibility: 8
-        goldValue: 200
-        tripleGroup: 030000000300000003000000
+        name: Bonus-A-Jackpot
+        possibility: 13
+        goldValue: 0
+        tripleGroup: 030000000400000000000000
     - key: 78
       value:
         name: Bonus-Bonus-Bonus
@@ -494,34 +494,34 @@ MonoBehaviour:
         tripleGroup: 030000000300000003000000
     - key: 79
       value:
-        name: Bonus-Bonus-Bonus
-        possibility: 8
-        goldValue: 200
-        tripleGroup: 030000000300000003000000
+        name: A-A-A
+        possibility: 9
+        goldValue: 100
+        tripleGroup: 040000000400000004000000
     - key: 80
       value:
-        name: Bonus-Bonus-Bonus
-        possibility: 8
-        goldValue: 200
-        tripleGroup: 030000000300000003000000
+        name: Wild-Bonus-A
+        possibility: 13
+        goldValue: 0
+        tripleGroup: 010000000300000004000000
     - key: 81
       value:
-        name: Bonus-Bonus-Bonus
-        possibility: 8
-        goldValue: 200
-        tripleGroup: 030000000300000003000000
+        name: Jackpot-Jackpot-A
+        possibility: 13
+        goldValue: 0
+        tripleGroup: 000000000000000004000000
     - key: 82
       value:
-        name: Seven-Seven-Seven
-        possibility: 7
-        goldValue: 300
-        tripleGroup: 020000000200000002000000
+        name: A-Wild-Bonus
+        possibility: 13
+        goldValue: 0
+        tripleGroup: 040000000100000003000000
     - key: 83
       value:
-        name: Seven-Seven-Seven
-        possibility: 7
-        goldValue: 300
-        tripleGroup: 020000000200000002000000
+        name: Jackpot-Jackpot-Jackpot
+        possibility: 5
+        goldValue: 500
+        tripleGroup: 000000000000000000000000
     - key: 84
       value:
         name: Seven-Seven-Seven
@@ -530,92 +530,92 @@ MonoBehaviour:
         tripleGroup: 020000000200000002000000
     - key: 85
       value:
-        name: Seven-Seven-Seven
-        possibility: 7
-        goldValue: 300
-        tripleGroup: 020000000200000002000000
+        name: A-A-A
+        possibility: 9
+        goldValue: 100
+        tripleGroup: 040000000400000004000000
     - key: 86
       value:
-        name: Seven-Seven-Seven
-        possibility: 7
-        goldValue: 300
-        tripleGroup: 020000000200000002000000
+        name: Bonus-A-Jackpot
+        possibility: 13
+        goldValue: 0
+        tripleGroup: 030000000400000000000000
     - key: 87
       value:
-        name: Seven-Seven-Seven
-        possibility: 7
-        goldValue: 300
-        tripleGroup: 020000000200000002000000
+        name: Wild-Wild-Seven
+        possibility: 13
+        goldValue: 0
+        tripleGroup: 010000000100000002000000
     - key: 88
       value:
+        name: Wild-Wild-Wild
+        possibility: 6
+        goldValue: 400
+        tripleGroup: 010000000100000001000000
+    - key: 89
+      value:
+        name: Wild-Bonus-A
+        possibility: 13
+        goldValue: 0
+        tripleGroup: 010000000300000004000000
+    - key: 90
+      value:
+        name: Wild-Wild-Seven
+        possibility: 13
+        goldValue: 0
+        tripleGroup: 010000000100000002000000
+    - key: 91
+      value:
+        name: Bonus-Bonus-Bonus
+        possibility: 8
+        goldValue: 200
+        tripleGroup: 030000000300000003000000
+    - key: 92
+      value:
+        name: Bonus-A-Jackpot
+        possibility: 13
+        goldValue: 0
+        tripleGroup: 030000000400000000000000
+    - key: 93
+      value:
+        name: Jackpot-Jackpot-A
+        possibility: 13
+        goldValue: 0
+        tripleGroup: 000000000000000004000000
+    - key: 94
+      value:
         name: Seven-Seven-Seven
         possibility: 7
         goldValue: 300
         tripleGroup: 020000000200000002000000
-    - key: 89
-      value:
-        name: Wild-Wild-Wild
-        possibility: 6
-        goldValue: 400
-        tripleGroup: 010000000100000001000000
-    - key: 90
-      value:
-        name: Wild-Wild-Wild
-        possibility: 6
-        goldValue: 400
-        tripleGroup: 010000000100000001000000
-    - key: 91
-      value:
-        name: Wild-Wild-Wild
-        possibility: 6
-        goldValue: 400
-        tripleGroup: 010000000100000001000000
-    - key: 92
-      value:
-        name: Wild-Wild-Wild
-        possibility: 6
-        goldValue: 400
-        tripleGroup: 010000000100000001000000
-    - key: 93
-      value:
-        name: Wild-Wild-Wild
-        possibility: 6
-        goldValue: 400
-        tripleGroup: 010000000100000001000000
-    - key: 94
-      value:
-        name: Wild-Wild-Wild
-        possibility: 6
-        goldValue: 400
-        tripleGroup: 010000000100000001000000
     - key: 95
       value:
-        name: Jackpot-Jackpot-Jackpot
-        possibility: 5
-        goldValue: 500
-        tripleGroup: 000000000000000000000000
+        name: A-Wild-Bonus
+        possibility: 13
+        goldValue: 0
+        tripleGroup: 040000000100000003000000
     - key: 96
       value:
-        name: Jackpot-Jackpot-Jackpot
-        possibility: 5
-        goldValue: 500
-        tripleGroup: 000000000000000000000000
+        name: Wild-Wild-Seven
+        possibility: 13
+        goldValue: 0
+        tripleGroup: 010000000100000002000000
     - key: 97
       value:
-        name: Jackpot-Jackpot-Jackpot
-        possibility: 5
-        goldValue: 500
-        tripleGroup: 000000000000000000000000
+        name: A-Wild-Bonus
+        possibility: 13
+        goldValue: 0
+        tripleGroup: 040000000100000003000000
     - key: 98
       value:
-        name: Jackpot-Jackpot-Jackpot
-        possibility: 5
-        goldValue: 500
-        tripleGroup: 000000000000000000000000
+        name: Jackpot-Jackpot-A
+        possibility: 13
+        goldValue: 0
+        tripleGroup: 000000000000000004000000
     - key: 99
       value:
-        name: Jackpot-Jackpot-Jackpot
-        possibility: 5
-        goldValue: 500
-        tripleGroup: 000000000000000000000000
+        name: Wild-Bonus-A
+        possibility: 13
+        goldValue: 0
+        tripleGroup: 010000000300000004000000
     error: 0

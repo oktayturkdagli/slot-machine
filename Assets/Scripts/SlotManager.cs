@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class SlotManager : MonoBehaviour
 {
+    [SerializeField] private GameData gameData;
     [SerializeField] private LevelData levelData;
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private UIManager uiManager;
@@ -51,7 +52,6 @@ public class SlotManager : MonoBehaviour
         }
         
         _isSpinning = true;
-        levelData.IncreaseSpinCounter();
         levelData.DecreaseEnergy();
         uiManager.SetCurrentEnergyText(levelData.GetCurrentEnergy().ToString());
         animationManager.SetBingoElements(slotElementGroup.tripleGroup[0], slotElementGroup.tripleGroup[1], slotElementGroup.tripleGroup[2]);
@@ -69,6 +69,7 @@ public class SlotManager : MonoBehaviour
         }
         levelData.IncreaseGold(slotElementGroup.goldValue);
         uiManager.SetGoldText(levelData.GetGold().ToString());
+        levelData.IncreaseSpinCounter();
         OnEndSpin?.Invoke();
     }
 

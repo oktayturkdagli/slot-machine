@@ -2,26 +2,23 @@
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] private GameData gameData;
     [SerializeField] private LevelData leveData;
+    [SerializeField] private ProbabilityManager probabilityManager;
     
     private void Awake()
     {
         CreateLevel();
     }
     
+    [ContextMenu("Create Level")]
     public void CreateLevel()
     {
         ClearLevel();
         
-        var counter = 0;
-        foreach (var slotElementGroup in gameData.GetSlotElementGroups())
+        var listOfWonders = probabilityManager.TryYourBest();
+        for (var i = 0; i < listOfWonders.Count; i++)
         {
-            for (var i = 0; i < slotElementGroup.possibility; i++)
-            {
-                leveData.GetSlotElementGroupsDictionary().Add(counter, slotElementGroup);
-                counter++;
-            }
+            leveData.GetSlotElementGroupsDictionary().Add(i, listOfWonders[i]);
         }
     }
     

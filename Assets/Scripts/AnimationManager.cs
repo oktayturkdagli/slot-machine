@@ -187,7 +187,7 @@ public class AnimationManager : MonoBehaviour
     {
         if (_slot1AnimationObject.IsAnimationFinished && _slot2AnimationObject.IsAnimationFinished && _slot3AnimationObject.IsAnimationFinished)
         {
-            DOTween.KillAll(false);
+            DOTween.KillAll();
             OnEndAllSlotAnimations?.Invoke();
         }
     }
