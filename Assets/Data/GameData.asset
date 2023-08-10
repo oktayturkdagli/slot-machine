@@ -16,73 +16,67 @@ MonoBehaviour:
     pairs:
     - key: 0
       value:
-        name: Jackpot
-        type: 0
-        normalSprite: {fileID: 21300000, guid: 6b2df9cc4a91c4e46ac6a519280d09c7, type: 3}
-        blurredSprite: {fileID: 21300000, guid: 4075728b42e679d4ca7d27e66caa6fc4, type: 3}
+        <TypeReference>k__BackingField: 0
+        <NormalSprite>k__BackingField: {fileID: 21300000, guid: 6b2df9cc4a91c4e46ac6a519280d09c7, type: 3}
+        <BlurredSprite>k__BackingField: {fileID: 21300000, guid: 4075728b42e679d4ca7d27e66caa6fc4, type: 3}
     - key: 1
       value:
-        name: Wild
-        type: 1
-        normalSprite: {fileID: 21300000, guid: e4b82c454ddae8640943e279695e24a8, type: 3}
-        blurredSprite: {fileID: 21300000, guid: ebea72ccb3526974d8520bd439d99ebc, type: 3}
+        <TypeReference>k__BackingField: 1
+        <NormalSprite>k__BackingField: {fileID: 21300000, guid: e4b82c454ddae8640943e279695e24a8, type: 3}
+        <BlurredSprite>k__BackingField: {fileID: 21300000, guid: ebea72ccb3526974d8520bd439d99ebc, type: 3}
     - key: 2
       value:
-        name: Seven
-        type: 2
-        normalSprite: {fileID: 21300000, guid: ecec7fa7a29682c4bafaf43524223af6, type: 3}
-        blurredSprite: {fileID: 21300000, guid: 8b943cd5dd1559749be4fec69dddc6c8, type: 3}
+        <TypeReference>k__BackingField: 2
+        <NormalSprite>k__BackingField: {fileID: 21300000, guid: ecec7fa7a29682c4bafaf43524223af6, type: 3}
+        <BlurredSprite>k__BackingField: {fileID: 21300000, guid: 8b943cd5dd1559749be4fec69dddc6c8, type: 3}
     - key: 3
       value:
-        name: Bonus
-        type: 3
-        normalSprite: {fileID: 21300000, guid: cc385f01c1161a34fbae1ce8cb9ffdb2, type: 3}
-        blurredSprite: {fileID: 21300000, guid: de3e9ea8146b2664aba83eaab8ab7a62, type: 3}
+        <TypeReference>k__BackingField: 3
+        <NormalSprite>k__BackingField: {fileID: 21300000, guid: cc385f01c1161a34fbae1ce8cb9ffdb2, type: 3}
+        <BlurredSprite>k__BackingField: {fileID: 21300000, guid: de3e9ea8146b2664aba83eaab8ab7a62, type: 3}
     - key: 4
       value:
-        name: A
-        type: 4
-        normalSprite: {fileID: 21300000, guid: 3243d017b2606f44190fb828b7f5e28f, type: 3}
-        blurredSprite: {fileID: 21300000, guid: 6665153007fdfb54c9032c105d13f7a2, type: 3}
-    error: 0
+        <TypeReference>k__BackingField: 4
+        <NormalSprite>k__BackingField: {fileID: 21300000, guid: 3243d017b2606f44190fb828b7f5e28f, type: 3}
+        <BlurredSprite>k__BackingField: {fileID: 21300000, guid: 6665153007fdfb54c9032c105d13f7a2, type: 3}
   slotElementGroups:
   - name: A-Wild-Bonus
-    possibility: 13
-    goldValue: 0
-    tripleGroup: 040000000100000003000000
+    <Possibility>k__BackingField: 13
+    <GoldValue>k__BackingField: 0
+    <TripleGroup>k__BackingField: 040000000100000003000000
   - name: Wild-Wild-Seven
-    possibility: 13
-    goldValue: 0
-    tripleGroup: 010000000100000002000000
+    <Possibility>k__BackingField: 13
+    <GoldValue>k__BackingField: 0
+    <TripleGroup>k__BackingField: 010000000100000002000000
   - name: Jackpot-Jackpot-A
-    possibility: 13
-    goldValue: 0
-    tripleGroup: 000000000000000004000000
+    <Possibility>k__BackingField: 13
+    <GoldValue>k__BackingField: 0
+    <TripleGroup>k__BackingField: 000000000000000004000000
   - name: Wild-Bonus-A
-    possibility: 13
-    goldValue: 0
-    tripleGroup: 010000000300000004000000
+    <Possibility>k__BackingField: 13
+    <GoldValue>k__BackingField: 0
+    <TripleGroup>k__BackingField: 010000000300000004000000
   - name: Bonus-A-Jackpot
-    possibility: 13
-    goldValue: 0
-    tripleGroup: 030000000400000000000000
+    <Possibility>k__BackingField: 13
+    <GoldValue>k__BackingField: 0
+    <TripleGroup>k__BackingField: 030000000400000000000000
   - name: A-A-A
-    possibility: 9
-    goldValue: 100
-    tripleGroup: 040000000400000004000000
+    <Possibility>k__BackingField: 9
+    <GoldValue>k__BackingField: 100
+    <TripleGroup>k__BackingField: 040000000400000004000000
   - name: Bonus-Bonus-Bonus
-    possibility: 8
-    goldValue: 200
-    tripleGroup: 030000000300000003000000
+    <Possibility>k__BackingField: 8
+    <GoldValue>k__BackingField: 200
+    <TripleGroup>k__BackingField: 030000000300000003000000
   - name: Seven-Seven-Seven
-    possibility: 7
-    goldValue: 300
-    tripleGroup: 020000000200000002000000
+    <Possibility>k__BackingField: 7
+    <GoldValue>k__BackingField: 300
+    <TripleGroup>k__BackingField: 020000000200000002000000
   - name: Wild-Wild-Wild
-    possibility: 6
-    goldValue: 400
-    tripleGroup: 010000000100000001000000
+    <Possibility>k__BackingField: 6
+    <GoldValue>k__BackingField: 400
+    <TripleGroup>k__BackingField: 010000000100000001000000
   - name: Jackpot-Jackpot-Jackpot
-    possibility: 5
-    goldValue: 500
-    tripleGroup: 000000000000000000000000
+    <Possibility>k__BackingField: 5
+    <GoldValue>k__BackingField: 500
+    <TripleGroup>k__BackingField: 000000000000000000000000

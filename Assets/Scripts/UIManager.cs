@@ -14,9 +14,10 @@ public class UIManager : MonoBehaviour
     {
         InitializeUI();
     }
-
+    
     private void InitializeUI()
     {
+        // Set UI texts
         SetGoldText(levelData.GetGold().ToString());
         SetCurrentEnergyText(levelData.GetCurrentEnergy().ToString());
         SetMaxEnergyText(levelData.GetMaxEnergy().ToString());

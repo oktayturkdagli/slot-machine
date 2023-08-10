@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
 
+// This class is used to hold the data of the level.
 [CreateAssetMenu(fileName = "LevelData", menuName = "Level Data")]
 public class LevelData : ScriptableObject
 {
-    [SerializeField] private int spinCounter;
-    [SerializeField] private int gold;
-    [SerializeField] private int maxEnergy;
-    [SerializeField] private int currentEnergy;
-    [SerializeField] private SerializedDictionary<int, SlotElementGroup> slotElementGroupsDictionary = new SerializedDictionary<int, SlotElementGroup>();
+    [SerializeField] private int spinCounter; // Spin counter is the counter that holds the number of the spins that the player has played
+    [SerializeField] private int gold; // Gold is the gold that the player has
+    [SerializeField] private int maxEnergy; // Max energy is the maximum energy that the player can have
+    [SerializeField] private int currentEnergy; // Current energy is the current energy that the player has
+    // Slot element groups dictionary is the dictionary that holds the slot element groups with their spin counters
+    [SerializeField] private SerializedDictionary<int, SlotElementGroup> slotElementGroupsDictionary = new SerializedDictionary<int, SlotElementGroup>(); 
     
     private LevelData()
     {
@@ -22,14 +24,9 @@ public class LevelData : ScriptableObject
         currentEnergy = 1000;
     }
     
-    public void IncreaseSpinCounter(int value = 1)
+    public void IncreaseSpinCounter()
     {
         spinCounter += 1;
-    }
-    
-    public void DecreaseSpinCounter(int value = 1)
-    {
-        currentEnergy -= value;
     }
     
     public void ResetSpinCounter()
@@ -40,11 +37,6 @@ public class LevelData : ScriptableObject
     public void IncreaseGold(int value)
     {
         gold += value;
-    }
-    
-    public void IncreaseEnergy(int value = 1)
-    {
-        currentEnergy += value;
     }
     
     public void DecreaseEnergy(int value = 1)
@@ -60,11 +52,6 @@ public class LevelData : ScriptableObject
     public void ClearSlotElementGroupsDictionary()
     {
         slotElementGroupsDictionary.Clear();
-    }
-    
-    public void AddSlotElementGroupToDictionary(int index, SlotElementGroup slotElementGroup)
-    {
-        slotElementGroupsDictionary.Add(index, slotElementGroup);
     }
     
     public SlotElementGroup GetSlotElementGroup()
@@ -98,30 +85,4 @@ public class LevelData : ScriptableObject
     {
         return slotElementGroupsDictionary;
     }
-    
-    public void SetSpinCounter(int value)
-    {
-        spinCounter = value;
-    }
-    
-    public void SetGold(int value)
-    {
-        gold = value;
-    }
-    
-    public void SetMaxEnergy(int value)
-    {
-        maxEnergy = value;
-    }
-    
-    public void SetCurrentEnergy(int value)
-    {
-        currentEnergy = value;
-    }
-    
-    public void SetSlotElementGroupsDictionary(SerializedDictionary<int, SlotElementGroup> dictionary)
-    {
-        slotElementGroupsDictionary = dictionary;
-    }
-    
 }

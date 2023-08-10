@@ -10,25 +10,23 @@ public class LevelManager : MonoBehaviour
         CreateLevel();
     }
     
+    // This method is called from the context menu of the LevelManager script
     [ContextMenu("Create Level")]
     public void CreateLevel()
     {
         ClearLevel();
         
-        var listOfWonders = probabilityManager.TryYourBest();
-        for (var i = 0; i < listOfWonders.Count; i++)
+        // Periodically placed objects are thrown into a dictionary for easier access
+        var periodicallyPlacedObjects = probabilityManager.GenerateSlotPool();
+        var slotElementGroupsDictionary = leveData.GetSlotElementGroupsDictionary();
+        for (var i = 0; i < periodicallyPlacedObjects.Count; i++)
         {
-            leveData.GetSlotElementGroupsDictionary().Add(i, listOfWonders[i]);
+            slotElementGroupsDictionary.Add(i, periodicallyPlacedObjects[i]);
         }
     }
     
     private void ClearLevel()
     {
         leveData.ClearSlotElementGroupsDictionary();
-    }
-    
-    private void RestartLevel()
-    {
-        leveData.SetSpinCounter(0);
     }
 }

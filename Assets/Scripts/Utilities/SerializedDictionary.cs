@@ -1,215 +1,192 @@
-﻿﻿#if UNITY_2020_1_OR_NEWER
+﻿#if UNITY_2020_1_OR_NEWER
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
-namespace UnityEngine
+[Serializable]
+public sealed class SerializedDictionary<TK, TV> : IDictionary<TK, TV>, ISerializationCallbackReceiver
 {
-    /// <summary>
-    /// Overlay for the <see cref="Dictionary{TKey, TValue}"/> to allow serialization of the key/value pairs.
-    /// </summary>
     [Serializable]
-    public sealed class SerializedDictionary<TK, TV> : IDictionary<TK, TV>, ISerializationCallbackReceiver
+    private struct KeyValuePair
     {
-        [Serializable]
-        private struct KeyValuePair
-        {
-            [SerializeField]
-            private TK key;
-            [SerializeField]
-            private TV value;
-
-            public KeyValuePair(TK key, TV value)
-            {
-                this.key = key;
-                this.value = value;
-            }
-
-            public TK Key
-            {
-                get => key;
-                set => key = value;
-            }
-
-            public TV Value
-            {
-                get => value;
-                set => this.value = value;
-            }
-        }
-        
         [SerializeField]
-        private List<KeyValuePair> pairs = new List<KeyValuePair>();
-        private readonly Dictionary<TK, int> indexByKey = new Dictionary<TK, int>();
-        private readonly Dictionary<TK, TV> dictionary = new Dictionary<TK, TV>();
+        private TK key;
+        [SerializeField]
+        private TV value;
 
-        [SerializeField, HideInInspector]
-        private bool error;
+        public KeyValuePair(TK key, TV value)
+        {
+            this.key = key;
+            this.value = value;
+        }
+
+        public TK Key
+        {
+            get => key;
+            set => key = value;
+        }
+
+        public TV Value
+        {
+            get => value;
+            set => this.value = value;
+        }
+    }
+    
+    [SerializeField]
+    private List<KeyValuePair> pairs = new();
+    private readonly Dictionary<TK, int> _indexByKey = new();
+    private readonly Dictionary<TK, TV> _dictionary = new();
+    
+    private void UpdateIndexes(int removedIndex)
+    {
+        for (var i = removedIndex; i < pairs.Count; i++)
+        {
+            var key = pairs[i].Key;
+            _indexByKey[key]--;
+        }
+    }
+    
+    void ISerializationCallbackReceiver.OnBeforeSerialize()
+    {
+        // Method intentionally left empty.
+    }
+
+    void ISerializationCallbackReceiver.OnAfterDeserialize()
+    {
+        _dictionary.Clear();
+        _indexByKey.Clear();
+
+        for (var i = 0; i < pairs.Count; i++)
+        {
+            var key = pairs[i].Key;
+            if (key != null && !ContainsKey(key))
+            {
+                _dictionary.Add(key, pairs[i].Value);
+                _indexByKey.Add(key, i);
+            }
+        }
+    }
+
+    public void Add(TK key, TV value)
+    {
+        if(!pairs.Contains(new KeyValuePair(key,value))) pairs.Add(new KeyValuePair(key, value));
+        _dictionary.TryAdd(key, value);
+        _indexByKey.TryAdd(key, pairs.Count - 1);
+    }
+
+    public bool ContainsKey(TK key)
+    {
+        return _dictionary.ContainsKey(key);
+    }
+
+    public bool Remove(TK key)
+    {
+        if (_dictionary.Remove(key))
+        {
+            var index = _indexByKey[key];
+            pairs.RemoveAt(index);
+            UpdateIndexes(index);
+            _indexByKey.Remove(key);
+            return true;
+        }
         
-        private void UpdateIndexes(int removedIndex)
+        return false;
+    }
+
+    public bool TryGetValue(TK key, out TV value)
+    {
+        return _dictionary.TryGetValue(key, out value);
+    }
+
+    public void Clear()
+    {
+        pairs.Clear();
+        _dictionary.Clear();
+        _indexByKey.Clear();
+    }
+
+    [Obsolete("Use BuildNativeDictionary instead.")]
+    public Dictionary<TK, TV> BuiltNativeDictionary()
+    {
+        return new Dictionary<TK, TV>(_dictionary);
+    }
+    
+    public Dictionary<TK, TV> BuildNativeDictionary()
+    {
+        return new Dictionary<TK, TV>(_dictionary);
+    }
+    
+    void ICollection<KeyValuePair<TK, TV>>.Add(KeyValuePair<TK, TV> pair)
+    {
+        Add(pair.Key, pair.Value);
+    }
+    
+    bool ICollection<KeyValuePair<TK, TV>>.Contains(KeyValuePair<TK, TV> pair)
+    {
+        if (_dictionary.TryGetValue(pair.Key, out var value))
         {
-            for (var i = removedIndex; i < pairs.Count; i++)
-            {
-                var key = pairs[i].Key;
-                indexByKey[key]--;
-            }
+            return EqualityComparer<TV>.Default.Equals(value, pair.Value);
         }
-        
-        void ISerializationCallbackReceiver.OnBeforeSerialize() { }
-
-        void ISerializationCallbackReceiver.OnAfterDeserialize()
+        else
         {
-            dictionary.Clear();
-            indexByKey.Clear();
-            error = false;
-
-            for (int i = 0; i < pairs.Count; i++)
-            {
-                var key = pairs[i].Key;
-                if (key != null && !ContainsKey(key))
-                {
-                    dictionary.Add(key, pairs[i].Value);
-                    indexByKey.Add(key, i);
-                }
-                else
-                {
-                    error = true;
-                }
-            }
-        }
-
-        public void Add(TK key, TV value)
-        {
-            if(!pairs.Contains(new KeyValuePair(key,value))) pairs.Add(new KeyValuePair(key, value));
-            if(!dictionary.ContainsKey(key)) dictionary.Add(key, value);
-            if(!indexByKey.ContainsKey(key)) indexByKey.Add(key, pairs.Count - 1);
-        }
-
-        public bool ContainsKey(TK key)
-        {
-            return dictionary.ContainsKey(key);
-        }
-
-        public bool Remove(TK key)
-        {
-            if (dictionary.Remove(key))
-            {
-                var index = indexByKey[key];
-                pairs.RemoveAt(index);
-                UpdateIndexes(index);
-                indexByKey.Remove(key);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        public bool TryGetValue(TK key, out TV value)
-        {
-            return dictionary.TryGetValue(key, out value);
-        }
-
-        public void Clear()
-        {
-            pairs.Clear();
-            dictionary.Clear();
-            indexByKey.Clear();
-        }
-
-        [Obsolete("Use BuildNativeDictionary instead.")]
-        public Dictionary<TK, TV> BuiltNativeDictionary()
-        {
-            return new Dictionary<TK, TV>(dictionary);
-        }
-
-        public Dictionary<TK, TV> BuildNativeDictionary()
-        {
-            return new Dictionary<TK, TV>(dictionary);
-        }
-
-        void ICollection<KeyValuePair<TK, TV>>.Add(KeyValuePair<TK, TV> pair)
-        {
-            Add(pair.Key, pair.Value);
-        }
-
-        bool ICollection<KeyValuePair<TK, TV>>.Contains(KeyValuePair<TK, TV> pair)
-        {
-            if (dictionary.TryGetValue(pair.Key, out var value))
-            {
-                return EqualityComparer<TV>.Default.Equals(value, pair.Value);
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        bool ICollection<KeyValuePair<TK, TV>>.Remove(KeyValuePair<TK, TV> pair)
-        {
-            if (dictionary.TryGetValue(pair.Key, out var value))
-            {
-                var isEqual = EqualityComparer<TV>.Default.Equals(value, pair.Value);
-                if (isEqual)
-                {
-                    return Remove(pair.Key);
-                }
-            }
-
             return false;
         }
-
-        void ICollection<KeyValuePair<TK, TV>>.CopyTo(KeyValuePair<TK, TV>[] array, int index)
+    }
+    
+    bool ICollection<KeyValuePair<TK, TV>>.Remove(KeyValuePair<TK, TV> pair)
+    {
+        if (_dictionary.TryGetValue(pair.Key, out var value))
         {
-            ICollection collection = dictionary;
-            collection.CopyTo(array, index);
-        }
-
-        IEnumerator<KeyValuePair<TK, TV>> IEnumerable<KeyValuePair<TK, TV>>.GetEnumerator()
-        {
-            return dictionary.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return dictionary.GetEnumerator();
-        }
-
-        public int Count => dictionary.Count;
-
-        public bool IsReadOnly => false;
-
-        public ICollection<TK> Keys => dictionary.Keys;
-
-        public ICollection<TV> Values => dictionary.Values;
-
-        /// <summary>
-        /// Indicates if there is a key collision in serialized pairs.
-        /// Duplicated keys (pairs) won't be added to the final dicitonary.
-        /// This property is crucial for Editor-related functions.
-        /// </summary>
-        public bool Error
-        {
-            get => error;
-        }
-
-        public TV this[TK key]
-        {
-            get => dictionary[key];
-            set
+            var isEqual = EqualityComparer<TV>.Default.Equals(value, pair.Value);
+            if (isEqual)
             {
-                dictionary[key] = value;
-                if (indexByKey.ContainsKey(key))
-                {
-                    var index = indexByKey[key];
-                    pairs[index] = new KeyValuePair(key, value);
-                }
-                else
-                {
-                    pairs.Add(new KeyValuePair(key, value));
-                    indexByKey.Add(key, pairs.Count - 1);
-                }
+                return Remove(pair.Key);
+            }
+        }
+
+        return false;
+    }
+    
+    void ICollection<KeyValuePair<TK, TV>>.CopyTo(KeyValuePair<TK, TV>[] array, int arrayIndex)
+    {
+        ICollection collection = _dictionary;
+        collection.CopyTo(array, arrayIndex);
+    }
+    
+    IEnumerator<KeyValuePair<TK, TV>> IEnumerable<KeyValuePair<TK, TV>>.GetEnumerator()
+    {
+        return _dictionary.GetEnumerator();
+    }
+    
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return _dictionary.GetEnumerator();
+    }
+    
+    public int Count => _dictionary.Count;
+    
+    public bool IsReadOnly => false;
+    
+    public ICollection<TK> Keys => _dictionary.Keys;
+    
+    public ICollection<TV> Values => _dictionary.Values;
+    
+    public TV this[TK key]
+    {
+        get => _dictionary[key];
+        set
+        {
+            _dictionary[key] = value;
+            if (_indexByKey.TryGetValue(key, out var index))
+            {
+                pairs[index] = new KeyValuePair(key, value);
+            }
+            else
+            {
+                pairs.Add(new KeyValuePair(key, value));
+                _indexByKey.Add(key, pairs.Count - 1);
             }
         }
     }

@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 public class AnimationManager : MonoBehaviour
 {
-    [SerializeField] private SlotManager slotManager;
+    [SerializeField] private SlotManager slotManager; 
     [SerializeField] private TimerManager timerManager;
     
     // Gold Animation
@@ -20,14 +20,14 @@ public class AnimationManager : MonoBehaviour
     [SerializeField] private Transform[] slot2Elements; 
     [SerializeField] private Transform[] slot3Elements; 
     
-    private const float CompletionTimeOfOneTurn = 0.1f;
+    private const float CompletionTimeOfOneTurn = 0.1f; // Time to complete one fast turn
     private const float Slot1Time = 0.1f;
     private const float Slot2Time = 0.1f;
     private const float Slot3Time = 2.5f;
     
-    private SlotAnimationObject _slot1AnimationObject;
-    private SlotAnimationObject _slot2AnimationObject;
-    private SlotAnimationObject _slot3AnimationObject;
+    private Slot _slot1;
+    private Slot _slot2;
+    private Slot _slot3;
     
     public event Action OnEndAllSlotAnimations;
     
@@ -46,16 +46,16 @@ public class AnimationManager : MonoBehaviour
     private void InitializeAnimations()
     {
         _distanceThreshold = Mathf.Abs(slot1Elements[0].localPosition.y - slot1Elements[1].localPosition.y) + MarginOfDeviation;
-        _slot1AnimationObject = new SlotAnimationObject(slot1Elements, Slot1Time, slot1Elements[2], 4);
-        _slot2AnimationObject = new SlotAnimationObject(slot2Elements, Slot2Time, slot2Elements[1], 8);
-        _slot3AnimationObject = new SlotAnimationObject(slot3Elements, Slot3Time, slot3Elements[0], 12);
+        _slot1 = new Slot(slot1Elements, Slot1Time, slot1Elements[2], 4);
+        _slot2 = new Slot(slot2Elements, Slot2Time, slot2Elements[1], 8);
+        _slot3 = new Slot(slot3Elements, Slot3Time, slot3Elements[0], 12);
     }
     
     public void SetBingoElements(SlotElementType bingoElement1, SlotElementType bingoElement2, SlotElementType bingoElement3)
     {
-        _slot1AnimationObject.BingoElement = slot1Elements[(int)bingoElement1];
-        _slot2AnimationObject.BingoElement = slot2Elements[(int)bingoElement2];
-        _slot3AnimationObject.BingoElement = slot3Elements[(int)bingoElement3];
+        _slot1.BingoElement = slot1Elements[(int)bingoElement1];
+        _slot2.BingoElement = slot2Elements[(int)bingoElement2];
+        _slot3.BingoElement = slot3Elements[(int)bingoElement3];
     }
     
     // Gold Animations
@@ -67,26 +67,29 @@ public class AnimationManager : MonoBehaviour
     // Slot Animations
     private void StartSlotAnimations()
     {
-        StartSlotAnimationWithDelay(_slot1AnimationObject);
-        StartSlotAnimationWithDelay(_slot2AnimationObject, Random.Range(0.1f, 0.3f));
-        StartSlotAnimationWithDelay(_slot3AnimationObject, Random.Range(0.5f, 0.7f));
+        StartSlotAnimationWithDelay(_slot1);
+        StartSlotAnimationWithDelay(_slot2, Random.Range(0.1f, 0.3f));
+        StartSlotAnimationWithDelay(_slot3, Random.Range(0.5f, 0.7f));
     }
     
-    private void StartSlotAnimationWithDelay(SlotAnimationObject slotAnimationObject, float delay = 0)
+    private void StartSlotAnimationWithDelay(Slot slot, float delay = 0)
     {
-        slotAnimationObject.ResetAnimationObject();
+        // Reset animation object of this slot
+        slot.ResetAnimationObject();
         
+        // Open blurred sprites and play animation
         if (delay == 0)
         {
-            OpenSprite(slotAnimationObject.SlotElements, true);
-            PlaySlotAnimation(slotAnimationObject);
+            OpenSprite(slot.SlotElements, true);
+            PlaySlotAnimation(slot);
         }
         else
         {
+            // Open blurred sprites after delay
             timerManager.CreateTimer(delay, () =>
             {
-                OpenSprite(slotAnimationObject.SlotElements, true);
-                PlaySlotAnimation(slotAnimationObject);
+                OpenSprite(slot.SlotElements, true);
+                PlaySlotAnimation(slot);
             });
         }
     }
@@ -100,14 +103,15 @@ public class AnimationManager : MonoBehaviour
         }
     }
     
-    private void PlaySlotAnimation(SlotAnimationObject slotAnimationObject)
+    private void PlaySlotAnimation(Slot slot)
     {
-        var targetPosition = CalculateTargetPositionsForAnimation(slotAnimationObject.SlotElements);
+        // Calculate target positions
+        var targetPosition = CalculateTargetPositionsForAnimation(slot.SlotElements);
         
         // Play animations
-        for (var i = 0; i < slotAnimationObject.SlotElements.Length; i++)
+        for (var i = 0; i < slot.SlotElements.Length; i++)
         {
-            PlayElementAnimation(slotAnimationObject, slotAnimationObject.SlotElements[i], targetPosition[i], i == slotAnimationObject.SlotElements.Length - 1);
+            PlayElementAnimation(slot, slot.SlotElements[i], targetPosition[i], i == slot.SlotElements.Length - 1);
         }
     }
     
@@ -142,54 +146,66 @@ public class AnimationManager : MonoBehaviour
         return targetPositions;
     }
     
-    private void PlayElementAnimation(SlotAnimationObject slotAnimationObject, Transform element, Vector3 targetPosition, bool isLastElement = false)
+    private void PlayElementAnimation(Slot slot, Transform element, Vector3 targetPosition, bool isLastElement = false)
     {
-        var currentAnimationDuration = CompletionTimeOfOneTurn / slotAnimationObject.SlotElements.Length;
-        if (slotAnimationObject.IsSlowed)
-            currentAnimationDuration = slotAnimationObject.SlotTime / 3;
+        // Calculate animation duration
+        var currentAnimationDuration = CompletionTimeOfOneTurn / slot.SlotElements.Length;
         
+        // If slot is slowed, calculate slowed animation time
+        if (slot.IsSlotAnimationSlowed)
+            currentAnimationDuration = slot.SlotAnimationTime / 3;
+        
+        // Play animation
         element.DOLocalMove(targetPosition, currentAnimationDuration).SetEase(Ease.Linear).OnComplete(() =>
         {
+            // Set element position to target position
             element.localPosition = targetPosition;
+            slot.SlotElementMoveAnimationCounter++;
+            
+            // If this is last element, check loop, because one turn is completed
             if (isLastElement)
             {
-                CheckLoop(slotAnimationObject);
+                CheckLoop(slot);
             }
         });
     }
     
-    private void CheckLoop(SlotAnimationObject slotAnimationObject)
+    private void CheckLoop(Slot slot)
     {
-        slotAnimationObject.AnimationPlayCounter++;
-        if (slotAnimationObject.AnimationPlayCounter % 5 == 0)
-            slotAnimationObject.TurnCounter++;
+        // AnimationPlayCounter % 5 == 0 means one turn is completed
+        if (slot.SlotElementMoveAnimationCounter % 5 == 0)
+            slot.TurnCounter++;
         
-        if (slotAnimationObject.TurnCounter >= slotAnimationObject.ShouldTurnFast && !slotAnimationObject.IsSlowed && IsElementOnEndPoint(slotAnimationObject.BingoElement))
-            SlowDownSlot(slotAnimationObject);
+        // If turn counter is equal to should turn fast, slow down slot
+        if (slot.TurnCounter >= slot.ShouldTurnFast && !slot.IsSlotAnimationSlowed && IsElementOnEndPoint(slot.BingoElement))
+            SlowDownSlot(slot);
         
-        else if (slotAnimationObject.IsSlowed && IsElementOnBingoPoint(slotAnimationObject.BingoElement))
+        // If slot is slowed and element is on bingo point, stop animation
+        else if (slot.IsSlotAnimationSlowed && IsElementOnBingoPoint(slot.BingoElement))
         {
-            slotAnimationObject.IsAnimationFinished = true;
+            slot.IsAnimationFinished = true;
             StopElementAnimation();
         }
         
-        if (!slotAnimationObject.IsAnimationFinished)
-            PlaySlotAnimation(slotAnimationObject);
+        // If the slot animation is not finished, continue playing the animation
+        if (!slot.IsAnimationFinished)
+            PlaySlotAnimation(slot);
     }
     
-    private void SlowDownSlot(SlotAnimationObject slotAnimationObject)
+    private void SlowDownSlot(Slot slot)
     {
-        slotAnimationObject.IsSlowed = true;
-        OpenSprite(slotAnimationObject.SlotElements);
+        slot.IsSlotAnimationSlowed = true;
+        OpenSprite(slot.SlotElements);
     }
     
     private void StopElementAnimation()
     {
-        if (_slot1AnimationObject.IsAnimationFinished && _slot2AnimationObject.IsAnimationFinished && _slot3AnimationObject.IsAnimationFinished)
-        {
-            DOTween.KillAll();
-            OnEndAllSlotAnimations?.Invoke();
-        }
+        // If all slots are finished, stop all animations and invoke OnEndAllSlotAnimations event
+        if (!_slot1.IsAnimationFinished || !_slot2.IsAnimationFinished || !_slot3.IsAnimationFinished) 
+            return;
+        
+        DOTween.KillAll();
+        OnEndAllSlotAnimations?.Invoke();
     }
     
     private bool IsElementOnEndPoint(Transform element)

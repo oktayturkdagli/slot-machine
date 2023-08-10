@@ -3,17 +3,14 @@ using UnityEngine;
 
 public class SlotManager : MonoBehaviour
 {
-    [SerializeField] private GameData gameData;
     [SerializeField] private LevelData levelData;
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private UIManager uiManager;
     [SerializeField] private AnimationManager animationManager;
-    
     private bool _isSpinning;
     
     public event Action OnStartSpin;
-    public event Action OnEndSpin;
-
+    
     private void Awake()
     {
         InitializeSlot();
@@ -26,16 +23,17 @@ public class SlotManager : MonoBehaviour
 
     private void InitializeSlot()
     {
-        animationManager.OnEndAllSlotAnimations -= OnEndAllSlotAnimations;
-        animationManager.OnEndAllSlotAnimations += OnEndAllSlotAnimations;
+        animationManager.OnEndAllSlotAnimations -= EndSpin;
+        animationManager.OnEndAllSlotAnimations += EndSpin;
         
+        // If slot element group dictionary is empty, create a new level
         if (levelData.GetSlotElementGroupsDictionary().Count == 0)
             levelManager.CreateLevel();
     }
     
     private void DeinitializeSlot()
     {
-        animationManager.OnEndAllSlotAnimations -= OnEndAllSlotAnimations;
+        animationManager.OnEndAllSlotAnimations -= EndSpin;
     }
 
     public void StartSpin()
@@ -43,43 +41,31 @@ public class SlotManager : MonoBehaviour
         if (_isSpinning)
             return;
         
-        var slotElementGroup = levelData.GetSlotElementGroup();
-        if (slotElementGroup == default)
-        {
-            // TODO: If null, create new level
-            Debug.Log("Hey, I did not find anything!");
-            return;
-        }
-        
         _isSpinning = true;
         levelData.DecreaseEnergy();
         uiManager.SetCurrentEnergyText(levelData.GetCurrentEnergy().ToString());
-        animationManager.SetBingoElements(slotElementGroup.tripleGroup[0], slotElementGroup.tripleGroup[1], slotElementGroup.tripleGroup[2]);
+        var slotElementGroup = levelData.GetSlotElementGroup();
+        animationManager.SetBingoElements(slotElementGroup.TripleGroup[0], slotElementGroup.TripleGroup[1], slotElementGroup.TripleGroup[2]);
         OnStartSpin?.Invoke();
     }
 
     private void EndSpin()
     {
         _isSpinning = false;
+        
         var slotElementGroup = levelData.GetSlotElementGroup();
-        if (slotElementGroup == default)
-        {
-            Debug.Log("Hey, I did not find anything!");
-            return;
-        }
-        levelData.IncreaseGold(slotElementGroup.goldValue);
+        if (slotElementGroup.GoldValue > 0)
+            animationManager.PlayGoldEffect();
+        levelData.IncreaseGold(slotElementGroup.GoldValue);
         uiManager.SetGoldText(levelData.GetGold().ToString());
         levelData.IncreaseSpinCounter();
-        OnEndSpin?.Invoke();
-    }
-
-    private void OnEndAllSlotAnimations()
-    {
-        var slotElementGroup = levelData.GetSlotElementGroup();
-        if (slotElementGroup.goldValue > 0)
+        
+        if (levelData.GetSpinCounter() == 100)
         {
-            animationManager.PlayGoldEffect();
+            levelManager.CreateLevel();
+            levelData.ResetSpinCounter();
+            levelData.ResetEnergy();
+            uiManager.SetCurrentEnergyText(levelData.GetCurrentEnergy().ToString());
         }
-        EndSpin();
     }
 }

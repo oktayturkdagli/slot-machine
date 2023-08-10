@@ -4,17 +4,15 @@ using UnityEngine;
 [Serializable]
 public class SlotElement
 {
-    public string name;
-    public SlotElementType type;
-    public Sprite normalSprite;
-    public Sprite blurredSprite;
+    [field: SerializeField] public SlotElementType ElementType { get; set; } // element type is the type of the slot element
+    [field: SerializeField] public Sprite NormalSprite { get; set; } // normal sprite is the sprite that will be shown when the slot is not blurred
+    [field: SerializeField] public Sprite BlurredSprite { get; set; } // blurred sprite is the sprite that will be shown when the slot is blurred
 
-    public SlotElement(SlotElementType type, Sprite normalSprite, Sprite blurredSprite)
+    public SlotElement(SlotElementType elementType, Sprite normalSprite, Sprite blurredSprite)
     {
-        name = type.ToString();
-        this.type = type;
-        this.normalSprite = normalSprite;
-        this.blurredSprite = blurredSprite;
+        ElementType = elementType;
+        NormalSprite = normalSprite;
+        BlurredSprite = blurredSprite;
     }
 }
 

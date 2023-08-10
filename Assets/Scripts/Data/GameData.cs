@@ -1,12 +1,11 @@
-﻿using System;
-using UnityEngine;
-using Random = UnityEngine.Random;
+﻿using UnityEngine;
 
+// This class is used to hold the data of the game.
 [CreateAssetMenu(fileName = "GameData", menuName = "Game Data")]
 public class GameData : ScriptableObject
 {
-    [SerializeField] private SerializedDictionary<SlotElementType, SlotElement> slotElements;
-    [SerializeField] private SlotElementGroup[] slotElementGroups;
+    [SerializeField] private SerializedDictionary<SlotElementType, SlotElement> slotElements; // hold the sprites of the elements
+    [SerializeField] private SlotElementGroup[] slotElementGroups; // hold the groups of the elements and its possibilities
     
     private GameData()
     {
@@ -46,37 +45,8 @@ public class GameData : ScriptableObject
         slotElementGroups[9] = new SlotElementGroup(5,500, new[] {SlotElementType.Jackpot, SlotElementType.Jackpot, SlotElementType.Jackpot});
     }
     
-    public Sprite GetSprite(SlotElementType slotElementType)
-    {
-        slotElements.TryGetValue(slotElementType, out var slotElement);
-        return slotElement?.normalSprite;
-    }
-    
-    public Sprite GetRandomSprite()
-    {
-        var enumLength = Enum.GetValues(typeof(SlotElementType)).Length;
-        slotElements.TryGetValue((SlotElementType)Random.Range(0, enumLength), out var slotElement);
-        return slotElement?.normalSprite;
-    }
-    
-    // Getters and Setters
-    public SerializedDictionary<SlotElementType, SlotElement> GetSlotElements()
-    {
-        return slotElements;
-    }
-    
     public SlotElementGroup[] GetSlotElementGroups()
     {
         return slotElementGroups;
-    }
-    
-    public void SetSlotElements(SerializedDictionary<SlotElementType, SlotElement> dictionary)
-    {
-        slotElements = dictionary;
-    }
-    
-    public void SetGetSlotElementGroups(SlotElementGroup[] array)
-    {
-        slotElementGroups = array;
     }
 }
