@@ -59,8 +59,10 @@ public class AnimationManager : MonoBehaviour
     }
     
     // Gold Animations
-    public void PlayGoldEffect()
+    public void PlayGoldEffect(int goldAmount = 50)
     {
+        var emission = goldEffect.emission;
+        emission.rateOverTime = goldAmount;
         goldEffect.Play();
     }
     

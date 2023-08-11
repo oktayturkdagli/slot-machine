@@ -55,7 +55,7 @@ public class SlotManager : MonoBehaviour
         
         var slotElementGroup = levelData.GetSlotElementGroup();
         if (slotElementGroup.GoldValue > 0)
-            animationManager.PlayGoldEffect();
+            animationManager.PlayGoldEffect(slotElementGroup.GoldValue / 2);
         levelData.IncreaseGold(slotElementGroup.GoldValue);
         uiManager.SetGoldText(levelData.GetGold().ToString());
         levelData.IncreaseSpinCounter();
