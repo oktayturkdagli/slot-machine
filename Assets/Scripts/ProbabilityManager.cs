@@ -104,7 +104,19 @@ public class ProbabilityManager : MonoBehaviour
         foreach (var slotElementGroup in gameData.GetSlotElementGroups())
         {
             var counter = _periodicallyPlacedObjects.Count(element => element == slotElementGroup);
-            Debug.Log(slotElementGroup.TripleGroup[0] + " " + slotElementGroup.TripleGroup[1] + " " + slotElementGroup.TripleGroup[2] + " %" + counter);
+            var text = slotElementGroup.TripleGroup[0] + " " + slotElementGroup.TripleGroup[1] + " " + slotElementGroup.TripleGroup[2];
+            text += " | Requested : %" + slotElementGroup.Possibility;
+            text += " | Real value : %" + counter;
+            if (slotElementGroup.Possibility == counter)
+            {
+                text += " | <color=green>OK</color>";
+                Debug.Log(text);
+            }
+            else
+            {
+                text += " |  <color=red>ERROR</color>";
+                Debug.LogWarning(text);
+            }
         }
     }
 }
