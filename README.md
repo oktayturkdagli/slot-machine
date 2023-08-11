@@ -1,5 +1,5 @@
 ## 📋 Slot Machine
-Summary
+This is a slot machine game made with Unity. It is a simple game where you can bet and win coins.
 <br/><br/>
 
 
