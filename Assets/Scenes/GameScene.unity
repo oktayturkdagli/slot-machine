@@ -3203,6 +3203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a11b8f150f23448b8f88c9717f4ffed1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelData: {fileID: 11400000, guid: 6311933dd5f6c534eb1b4fd164522683, type: 2}
   slotManager: {fileID: 1959812418}
   timerManager: {fileID: 1959812419}
   goldEffect: {fileID: 13539061}

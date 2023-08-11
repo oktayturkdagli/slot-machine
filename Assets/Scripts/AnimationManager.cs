@@ -5,6 +5,7 @@ using Random = UnityEngine.Random;
 
 public class AnimationManager : MonoBehaviour
 {
+    [SerializeField] private LevelData levelData;
     [SerializeField] private SlotManager slotManager; 
     [SerializeField] private TimerManager timerManager;
     
@@ -23,7 +24,9 @@ public class AnimationManager : MonoBehaviour
     private const float CompletionTimeOfOneTurn = 0.1f; // Time to complete one fast turn
     private const float Slot1Time = 0.1f;
     private const float Slot2Time = 0.1f;
-    private const float Slot3Time = 2.5f;
+    private const float Slot3Time = 0.1f;
+    private const float Slot3TimeSlow = 1f;
+    private const float Slot3TimeSlower = 2.5f;
     
     private Slot _slot1;
     private Slot _slot2;
@@ -58,6 +61,24 @@ public class AnimationManager : MonoBehaviour
         _slot3.BingoElement = slot3Elements[(int)bingoElement3];
     }
     
+    private void ChangeSlotTime(Slot slot, float newSlotTime)
+    {
+        slot.SlotAnimationTime = newSlotTime;
+    }
+    
+    private void DefineSlot3Time()
+    {
+        var slotElementGroup = levelData.GetSlotElementGroup();
+        var isSameFirstAndSecond = slotElementGroup.TripleGroup[0] == slotElementGroup.TripleGroup[1];
+        var isJackpot = slotElementGroup.TripleGroup[0] == SlotElementType.Jackpot;
+        
+        var newSlotTime = Slot3Time;
+        if (isSameFirstAndSecond)
+            newSlotTime = isJackpot ? Slot3TimeSlower : Slot3TimeSlow;
+        
+        ChangeSlotTime(_slot3, newSlotTime);
+    }
+    
     // Gold Animations
     public void PlayGoldEffect(int goldAmount = 50)
     {
@@ -69,6 +90,10 @@ public class AnimationManager : MonoBehaviour
     // Slot Animations
     private void StartSlotAnimations()
     {
+        // Change slot time of slot 3
+        DefineSlot3Time();
+        
+        // Start slot animations
         StartSlotAnimationWithDelay(_slot1);
         StartSlotAnimationWithDelay(_slot2, Random.Range(0.1f, 0.3f));
         StartSlotAnimationWithDelay(_slot3, Random.Range(0.5f, 0.7f));
