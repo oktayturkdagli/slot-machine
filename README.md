@@ -3,6 +3,8 @@ This is a slot machine game made with Unity. It is a simple game where you can b
 <br/><br/>
 
 
-## 🖼️ Screenshots
-<img src="Screenshots/1.png" width="240" height="440">
+## 🖼️ Visuals
+
+https://github.com/oktayturkdagli/slot-machine/assets/61520877/7184da1c-6e0c-4a17-a430-e9595aaa569c
+
 <br/><br/>
