@@ -28,7 +28,7 @@ public class TimerManager : MonoBehaviour
     }
 }
 
-public class Timer
+public struct Timer
 {
     public float CurrentTime { get; set; }
     public float TargetTime { get; set; }
