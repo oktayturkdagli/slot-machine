@@ -120,8 +120,11 @@ public class ProbabilityManager
             else
             {
                 text += " |  <color=red>ERROR</color>";
-                Debug.LogWarning(text);
+                // Debug.LogWarning(text);
             }
+            
+            // Assertion for easier error detection
+            Debug.Assert(slotElementGroup.Possibility == counter, text);
         }
     }
 }
