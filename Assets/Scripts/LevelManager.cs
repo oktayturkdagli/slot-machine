@@ -2,11 +2,13 @@
 
 public class LevelManager : MonoBehaviour
 {
+    [SerializeField] private GameData gameData;
     [SerializeField] private LevelData leveData;
-    [SerializeField] private ProbabilityManager probabilityManager;
+    private ProbabilityManager _probabilityManager;
     
     private void Awake()
     {
+        _probabilityManager = new ProbabilityManager(gameData);
         CreateLevel();
     }
     
@@ -17,7 +19,7 @@ public class LevelManager : MonoBehaviour
         ClearLevel();
         
         // Periodically placed objects are thrown into a dictionary for easier access
-        var periodicallyPlacedObjects = probabilityManager.GenerateSlotPool();
+        var periodicallyPlacedObjects = _probabilityManager.GenerateSlotPool();
         var slotElementGroupsDictionary = leveData.GetSlotElementGroupsDictionary();
         for (var i = 0; i < periodicallyPlacedObjects.Count; i++)
         {

@@ -9,7 +9,7 @@ public class LevelData : ScriptableObject
     [SerializeField] private int maxEnergy; // Max energy is the maximum energy that the player can have
     [SerializeField] private int currentEnergy; // Current energy is the current energy that the player has
     // Slot element groups dictionary is the dictionary that holds the slot element groups with their spin counters
-    [SerializeField] private SerializedDictionary<int, SlotElementGroup> slotElementGroupsDictionary = new SerializedDictionary<int, SlotElementGroup>(); 
+    [SerializeField] private SerializedDictionary<int, SlotElementGroup> slotElementGroupsDictionary = new(); 
     
     private LevelData()
     {

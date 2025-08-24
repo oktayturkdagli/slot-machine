@@ -2,11 +2,16 @@
 using System.Linq;
 using UnityEngine;
 
-public class ProbabilityManager : MonoBehaviour
+public class ProbabilityManager
 {
-    [SerializeField] private GameData gameData;
-    private List<SlotElementGroup> _periodicallyPlacedObjects = new List<SlotElementGroup>(new SlotElementGroup[100]);
-    private readonly List<SlotElementGroup> _notPlacedElements = new List<SlotElementGroup>();
+    private readonly GameData _gameData;
+    private List<SlotElementGroup> _periodicallyPlacedObjects = new(new SlotElementGroup[100]);
+    private readonly List<SlotElementGroup> _notPlacedElements = new();
+
+    public ProbabilityManager(GameData gameData)
+    {
+        _gameData = gameData;
+    }
     
     public List<SlotElementGroup> GenerateSlotPool()
     {
@@ -15,7 +20,7 @@ public class ProbabilityManager : MonoBehaviour
         _notPlacedElements.Clear();
         
         // Place elements one-by-one
-        foreach (var slotElementGroup in gameData.GetSlotElementGroups())
+        foreach (var slotElementGroup in _gameData.GetSlotElementGroups())
         {
             var periodSize = Mathf.CeilToInt(100 / (float)slotElementGroup.Possibility);
             PlaceElements(slotElementGroup, periodSize);
@@ -101,7 +106,7 @@ public class ProbabilityManager : MonoBehaviour
     private void TestPeriodicallyPlacedObjects()
     {
         // Print elements and its probability results
-        foreach (var slotElementGroup in gameData.GetSlotElementGroups())
+        foreach (var slotElementGroup in _gameData.GetSlotElementGroups())
         {
             var counter = _periodicallyPlacedObjects.Count(element => element == slotElementGroup);
             var text = slotElementGroup.TripleGroup[0] + " " + slotElementGroup.TripleGroup[1] + " " + slotElementGroup.TripleGroup[2];
